@@ -46,14 +46,14 @@ def load_docs(files):
 
 @st.cache_resource
 def create_retriever(_embeddings, splits, retriever_type):
-    if retriever_type == "SIMILARITY SEARCH":
+    if retriever_type == "Similarity Search":
         try:
             vectorstore = FAISS.from_texts(splits, _embeddings)
         except (IndexError, ValueError) as e:
             st.error(f"Error creating vectorstore: {e}")
             return
         retriever = vectorstore.as_retriever(k=5)
-    elif retriever_type == "SUPPORT VECTOR MACHINES":
+    elif retriever_type == "Support Vector Machines(not completed yet)":
         retriever = SVMRetriever.from_texts(splits, _embeddings)
 
     return retriever
